@@ -50,7 +50,7 @@ DATABASE_TYPE=mongodb
 DATABASE_URI=your_mongodb_url
 DATABASE_NAME=test_db
 PASSWORD_SALT_ROUNDS=10
-
+DATABASE_SYNC=true
 ```
 
 4. Start the server:

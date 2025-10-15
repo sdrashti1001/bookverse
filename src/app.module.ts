@@ -30,7 +30,7 @@ const throttlerConfig: ThrottlerModuleOptions = {
         url: configService.get<string>('DATABASE_URI'),
         database: configService.get<string>('DATABASE_NAME'),
         entities: [User,Book,Review, Vote],
-        synchronize: true,
+        synchronize: configService.get<boolean>('DATABASE_SYNC'),
       }),
     }),
     UserModule,
