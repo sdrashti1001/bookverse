@@ -1,0 +1,1546 @@
+{
+	"info": {
+		"_postman_id": "81b94f11-f6d6-4f39-a052-73b4987a3fac",
+		"name": "Bookverse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28753625"
+	},
+	"item": [
+		{
+			"name": "User Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"BookLover2\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"Password@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400 Bad request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"john_doe\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "140"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8c-QUMrwYwRPAvcPTSLthWNiL2FGhE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 14:46:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": [\n        \"username should be alphanumeric\",\n        \"Password must include at least one uppercase letter\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+				},
+				{
+					"name": "200 Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"BookLover1\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"Password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "158"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9e-524iLMwepI7MzbuxpeJ3hDcX09E\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 14:47:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"68efb3f3d7abbd64c66a899d\",\n    \"username\": \"BookLover1\",\n    \"email\": \"john@example.com\",\n    \"password\": \"$2b$10$..SYQiwmxOj0q51T721.0OWSR1A74N7NpgwTYDlDvJV4BvxqNjoPS\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"BookLover1\",\r\n  \"password\": \"Password@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "401 Unauthrized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"john_doe\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "73"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"49-Fx+yDPXfDSYD3nxIxyU6P47CVX0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:00:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid credentials\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+				},
+				{
+					"name": "200 success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"BookLover1\",\r\n  \"password\": \"Password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "223"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"df-GWJkTaytRZAZ9XtnAoo/5Or6VyM\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:01:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"NestJS for Beginners Part 3\",\r\n  \"author\": \"John Doe\",\r\n  \"genre\": \"Programming\",\r\n  \"year\": 2023,\r\n  \"summary\": \"An in-depth guide to mastering NestJS.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "401 unauthrized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"NestJS for Beginners Part 2\",\r\n  \"author\": \"John Doe\",\r\n  \"genre\": \"Programming\",\r\n  \"year\": 2023,\r\n  \"summary\": \"An in-depth guide to mastering NestJS.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-dGnJzt6gv1nJjX6DJ9RztDWptng\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:10:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+				},
+				{
+					"name": "400 Bad request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"NestJS for Beginners Part 2\",\r\n  \"author\": \"John Doe\",\r\n  \"genre\": \"Programming\",\r\n  \"year\": 2023,\r\n  \"summary\": \"An in-depth guide to mastering NestJS.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "88"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"58-hzWm2Y45Z2iS3RuMqgIRxXEKY/A\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:10:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Book with this field already exists\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+				},
+				{
+					"name": "200 Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"NestJS for Beginners Part 3\",\r\n  \"author\": \"John Doe\",\r\n  \"genre\": \"Programming\",\r\n  \"year\": 2023,\r\n  \"summary\": \"An in-depth guide to mastering NestJS.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c1-d5WgabtX1oCg7hbhI1z2rkPZVQQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:10:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"68efb981bf1b5d9b61d7b0e8\",\n    \"title\": \"NestJS for Beginners Part 3\",\n    \"author\": \"John Doe\",\n    \"genre\": \"Programming\",\n    \"year\": 2023,\n    \"summary\": \"An in-depth guide to mastering NestJS.\",\n    \"deletedAt\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Books",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/books?page=1&limit=10&genre=Programming&sort=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "genre",
+							"value": "Programming"
+						},
+						{
+							"key": "sort",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/books?page=1&limit=10&genre=Programming&sort=as",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "genre",
+									"value": "Programming"
+								},
+								{
+									"key": "sort",
+									"value": "as"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "477"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1dd-IbZGem/T3WKkRoIlzMZFcgGnlJo\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:11:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"68efb7880fd18d87241cfe43\",\n        \"title\": \"NestJS for Beginners\",\n        \"author\": \"John Doe\",\n        \"genre\": \"Programming\",\n        \"year\": 2023,\n        \"averageRating\": 0,\n        \"totalReviews\": 0\n    },\n    {\n        \"id\": \"68efb877bf1b5d9b61d7b0e6\",\n        \"title\": \"NestJS for Beginners Part 2\",\n        \"author\": \"John Doe\",\n        \"genre\": \"Programming\",\n        \"year\": 2023,\n        \"averageRating\": 0,\n        \"totalReviews\": 0\n    },\n    {\n        \"id\": \"68efb981bf1b5d9b61d7b0e8\",\n        \"title\": \"NestJS for Beginners Part 3\",\n        \"author\": \"John Doe\",\n        \"genre\": \"Programming\",\n        \"year\": 2023,\n        \"averageRating\": 0,\n        \"totalReviews\": 0\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/books/68efb7880fd18d87241cfe43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books",
+						"68efb7880fd18d87241cfe43"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "401 unauthorized",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/books/68efb7880fd18d87241cfe43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"68efb7880fd18d87241cfe43"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-dGnJzt6gv1nJjX6DJ9RztDWptng\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:22:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+				},
+				{
+					"name": "200 success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/books/68efb7880fd18d87241cfe43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"68efb7880fd18d87241cfe43"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:23:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Get Book By id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/books/68efb7880fd18d87241cfe43",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"books",
+						"68efb7880fd18d87241cfe43"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/books/68efb7880fd18d87241cfe43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"68efb7880fd18d87241cfe43"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "164"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-O7D3Wim+P7ogQAQSTZcwJEqPYxg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:19:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"68efb7880fd18d87241cfe43\",\n    \"title\": \"NestJS for Beginners\",\n    \"author\": \"John Doe\",\n    \"genre\": \"Programming\",\n    \"year\": 2023,\n    \"reviews\": [],\n    \"averageRating\": 0,\n    \"totalVotes\": 0\n}"
+				},
+				{
+					"name": "400 not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/books/68efb7880fd18d87241cfe431",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"books",
+								"68efb7880fd18d87241cfe431"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-OHqJGoFgm3QPcXNh1b7OvyIKep8\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:20:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Failed to fetch book details\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create review",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": \"64f839a2c2bfb4a6c78d1234\",\r\n  \"rating\": 4,\r\n  \"comment\": \"Great book with insightful content.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "401 unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": \"64f839a2c2bfb4a6c78d1234\",\r\n  \"rating\": 4,\r\n  \"comment\": \"Great book with insightful content.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "96"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"60-acwCn2Dv/ZAdaTFE3skn3RpMSjo\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:25:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User must be authenticated to add a review\",\n    \"error\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+				},
+				{
+					"name": "200 success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": \"64f839a2c2bfb4a6c78d1234\",\r\n  \"rating\": 4,\r\n  \"comment\": \"Great book with insightful content.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "207"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"cf-Md9IIQVZfnJFL2nNp02sMxAC/xE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:29:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"68efbdc24882e61cdbc8c0b5\",\n    \"bookId\": \"64f839a2c2bfb4a6c78d1234\",\n    \"userId\": \"68efb3f3d7abbd64c66a899d\",\n    \"rating\": 4,\n    \"comment\": \"Great book with insightful content.\",\n    \"upvotes\": 0,\n    \"downvotes\": 0,\n    \"deletedAt\": null\n}"
+				},
+				{
+					"name": "400 bad request duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": \"64f839a2c2bfb4a6c78d1234\",\r\n  \"rating\": 4,\r\n  \"comment\": \"Great book with insightful content.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"59-R3tBaUOfA5Z6KUMbNcuwQmyA3ZU\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:29:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You have already reviewed this book.\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+				}
+			]
+		},
+		{
+			"name": "Vote Review",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"vote\": \"down\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/reviews/68efc192b80e978988c0f117/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"reviews",
+						"68efc192b80e978988c0f117",
+						"vote"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "403 forbidden",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vote\": \"up\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reviews/68efbe584882e61cdbc8c0b6/vote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reviews",
+								"68efbe584882e61cdbc8c0b6",
+								"vote"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "88"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"58-V+5igJHDMbutDMW+GwEF9FF+fgE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:44:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"You have already voted on this review\",\n    \"error\": \"Forbidden\",\n    \"statusCode\": 403\n}"
+				},
+				{
+					"name": "200 success",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vote\": \"down\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reviews/68efc192b80e978988c0f117/vote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reviews",
+								"68efc192b80e978988c0f117",
+								"vote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "207"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"cf-zXmeH/su3TTsyENt9m+BK8fZS1k\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:45:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"68efc192b80e978988c0f117\",\n    \"bookId\": \"68efb981bf1b5d9b61d7b0e8\",\n    \"userId\": \"68efb3f3d7abbd64c66a899d\",\n    \"rating\": 4,\n    \"comment\": \"Great book with insightful content.\",\n    \"upvotes\": 0,\n    \"downvotes\": 1,\n    \"deletedAt\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Review",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/reviews/68efc192b80e978988c0f1172",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"reviews",
+						"68efc192b80e978988c0f1172"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/reviews/68efc192b80e978988c0f117",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reviews",
+								"68efc192b80e978988c0f117"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:49:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "400 Bad Request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJvb2tMb3ZlcjEiLCJzdWIiOiI2OGVmYjNmM2Q3YWJiZDY0YzY2YTg5OWQiLCJpYXQiOjE3NjA1NDA0NjIsImV4cCI6MTc2MDU0NDA2Mn0.vw-pYTRQVm5RHromFgXBhaTgYom7QAYDoozZNczHgLE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/reviews/68efc192b80e978988c0f1172",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reviews",
+								"68efc192b80e978988c0f1172"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "76"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4c-2SHzLQY3flL2Cz4pPz2MWgGfzMU\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 15 Oct 2025 15:51:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Failed to Delete Review\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+				}
+			]
+		}
+	]
+}
