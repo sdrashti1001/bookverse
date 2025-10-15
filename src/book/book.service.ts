@@ -180,10 +180,14 @@ export class BookService {
 
 
 async remove(id: string): Promise<void> {
-  const book = await this.bookRepository.findOneBy({ _id: new ObjectId(id) });
-  if (!book) throw new NotFoundException('Book not found');
+  try{
+    const book = await this.bookRepository.findOneBy({ _id: new ObjectId(id) });
+    if (!book) throw new NotFoundException('Book not found');
 
-  book.deletedAt = new Date();
-  await this.bookRepository.save(book);
+    book.deletedAt = new Date();
+    await this.bookRepository.save(book);
+  }catch(error) {
+    throw new BadRequestException('Failed to Delete Book');
+  }
 }
 }

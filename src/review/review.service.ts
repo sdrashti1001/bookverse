@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, MongoRepository } from 'typeorm';
 import { Review } from './entities/review.entity';
 import { ObjectId } from 'mongodb';
 import { CreateReviewDto, VoteReviewDto } from './dto/create-review.dto';
@@ -16,10 +16,10 @@ import { Vote } from './entities/votes.entity';
 export class ReviewService {
   constructor(
     @InjectRepository(Review)
-    private readonly reviewRepository: Repository<Review>,
+    private readonly reviewRepository: MongoRepository<Review>,
 
     @InjectRepository(Vote)
-    private readonly voteRepository: Repository<Vote>,
+    private readonly voteRepository: MongoRepository<Vote>,
   ) {}
 
   async create(createReviewDto: CreateReviewDto, userId: string): Promise<Review> {
@@ -30,10 +30,11 @@ export class ReviewService {
     const bookObjectId = new ObjectId(createReviewDto.bookId);
     const userObjectId = new ObjectId(userId);
 
-    // Check if user already reviewed this book
-    const existingReview = await this.reviewRepository.findOne({
-      where: { bookId: bookObjectId, userId: userObjectId },
+    const existingReview = await this.reviewRepository.findOneBy({
+      bookId: bookObjectId,
+      userId: userObjectId,
     });
+
     if (existingReview) {
       throw new BadRequestException('You have already reviewed this book.');
     }
@@ -58,14 +59,14 @@ export class ReviewService {
     const reviewObjectId = new ObjectId(reviewId);
     const userObjectId = new ObjectId(userId);
 
-    const review = await this.reviewRepository.findOneBy({ id: reviewObjectId });
+    const review = await this.reviewRepository.findOneBy({ _id: reviewObjectId });
     if (!review) {
       throw new NotFoundException('Review not found');
     }
 
-    // Check if vote exists
-    const existingVote = await this.voteRepository.findOne({
-      where: { reviewId: reviewObjectId, userId: userObjectId },
+    const existingVote = await this.voteRepository.findOneBy({
+      reviewId: reviewObjectId,
+      userId: userObjectId,
     });
     if (existingVote) {
       throw new ForbiddenException('You have already voted on this review');
@@ -83,20 +84,22 @@ export class ReviewService {
     });
     await this.voteRepository.save(vote);
 
-    // Update Review counts
-    if (voteValue === 1) {
-      review.upvotes += 1;
-    } else {
-      review.downvotes += 1;
-    }
+    if (voteValue === 1) review.upvotes += 1;
+    else review.downvotes += 1;
+
     return await this.reviewRepository.save(review);
   }
 
   async remove(id: string): Promise<void> {
-    const review = await this.reviewRepository.findOneBy({ id: new ObjectId(id) });
-    if (!review) throw new NotFoundException('Review not found');
 
-    review.deletedAt = new Date();
-    await this.reviewRepository.save(review);
+    try{
+      const review = await this.reviewRepository.findOneBy({ _id: new ObjectId(id) });
+      if (!review) throw new NotFoundException('Review not found');
+
+      review.deletedAt = new Date();
+      await this.reviewRepository.save(review);
+    }catch(error) {
+      throw new BadRequestException('Failed to Delete Review');
+  }
   }
 }

@@ -37,8 +37,8 @@ export class ReviewController {
     @Body() voteReviewDto: VoteReviewDto,
     @Request() req,
   ) {
-    const userId = req.user.userId;
-    return this.reviewService.vote(id, voteReviewDto, userId);
+    const userId = req.user.id;
+    return await this.reviewService.vote(id, voteReviewDto, userId);
   }
 
 

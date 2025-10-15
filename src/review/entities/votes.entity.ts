@@ -4,6 +4,7 @@ import { ObjectId } from 'mongodb';
 @Entity('votes')
 @Index(['reviewId', 'userId'], { unique: true }) // Composite unique index
 export class Vote {
+    
     @ObjectIdColumn()
     id!: ObjectId;
 

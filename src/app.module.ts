@@ -11,6 +11,7 @@ import { ReviewModule } from './review/review.module';
 import { ThrottlerModule, ThrottlerModuleOptions } from '@nestjs/throttler';
 import { Book } from './book/entities/book.entity';
 import { Review } from './review/entities/review.entity';
+import { Vote } from './review/entities/votes.entity';
 
 const throttlerConfig: ThrottlerModuleOptions = {
   ttl: 60,
@@ -28,7 +29,7 @@ const throttlerConfig: ThrottlerModuleOptions = {
         type: 'mongodb',
         url: configService.get<string>('DATABASE_URI'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User,Book,Review],
+        entities: [User,Book,Review, Vote],
         synchronize: true,
       }),
     }),
