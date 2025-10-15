@@ -1,4 +1,3 @@
-Sure! Here’s the README in a plain text format, ready for you to copy and paste:
 
 ````markdown
 # BookVerse API
@@ -103,5 +102,6 @@ Feel free to open issues or PRs.
 ---
 
 ## License
+
 
 MIT License
