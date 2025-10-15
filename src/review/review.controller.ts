@@ -19,8 +19,8 @@ export class ReviewController {
   @ApiBadRequestResponse({ description: 'Validation failed or review already exists' })
   @ApiUnauthorizedResponse({ description: 'Authentication required' })
   async create(@Body() createReviewDto: CreateReviewDto, @Request() req) {
-    const userId = req.user.userId;
-    return this.reviewService.create(createReviewDto, userId);
+    const userId = req.user.id;
+    return await this.reviewService.create(createReviewDto, userId);
   }
 
   @UseGuards(JwtAuthGuard)

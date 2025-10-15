@@ -29,7 +29,6 @@ export class UserService {
 
     return await this.userRepository.save(user);
   }catch(error) {
- // Generic Mongo duplicate key check (no hardcoded code)
     if (
       error instanceof Error &&
       ('code' in error || 'errmsg' in error) &&

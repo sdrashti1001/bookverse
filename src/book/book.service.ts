@@ -30,8 +30,20 @@ export class BookService {
 
 
   async create(createBookDto: CreateBookDto): Promise<Book> {
-    const book = this.bookRepository.create(createBookDto);
-    return this.bookRepository.save(book);
+      try{
+        const book = this.bookRepository.create(createBookDto);
+        return await  this.bookRepository.save(book);
+      }catch(error) {
+        if (
+          error instanceof Error &&
+          ('code' in error || 'errmsg' in error) &&
+          (error as any).message?.includes('duplicate key') // Generic safe check
+        ) {
+          throw new BadRequestException('Book with this field already exists');
+        }
+
+        throw new BadRequestException('Failed to create Book');
+    }
   }
 
 
@@ -103,7 +115,7 @@ export class BookService {
     try {
       const bookId = new ObjectId(id);
 
-      const book = await this.bookRepository.findOneBy({ id: bookId });
+      const book = await this.bookRepository.findOneBy({ _id: bookId });
       if (!book) {
         throw new NotFoundException('Book not found');
       }
@@ -163,12 +175,12 @@ export class BookService {
 
   async findOne(id: string): Promise<Book | null> {
     const objectId = new ObjectId(id);
-    return this.bookRepository.findOneBy({ id: objectId });
+    return await this.bookRepository.findOneBy({ _id: objectId });
   }
 
 
 async remove(id: string): Promise<void> {
-  const book = await this.bookRepository.findOneBy({ id: new ObjectId(id) });
+  const book = await this.bookRepository.findOneBy({ _id: new ObjectId(id) });
   if (!book) throw new NotFoundException('Book not found');
 
   book.deletedAt = new Date();
