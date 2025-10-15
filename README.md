@@ -31,8 +31,8 @@ This is a NestJS-based REST API for **BookVerse**, a platform for book reviews w
 1. Clone repo:
 
 ```bash
-git clone https://github.com/yourusername/bookverse-api.git
-cd bookverse-api
+git clone https://github.com/sdrashti1001/bookverse.git
+cd bookverse
 ````
 
 2. Install dependencies:
@@ -45,8 +45,12 @@ npm install
 
 ```
 PORT=3000
-MONGO_URI=mongodb://localhost:27017/bookverse
 JWT_SECRET=your_jwt_secret_here
+DATABASE_TYPE=mongodb
+DATABASE_URI=your_mongodb_url
+DATABASE_NAME=test_db
+PASSWORD_SALT_ROUNDS=10
+
 ```
 
 4. Start the server:
