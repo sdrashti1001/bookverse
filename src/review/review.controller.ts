@@ -8,7 +8,7 @@ import {
 
 @ApiTags('Reviews')
 @ApiBearerAuth('jwt')
-@Controller('reviews')
+@Controller('api/reviews')
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) { }
 

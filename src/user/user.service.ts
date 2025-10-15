@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -17,6 +17,7 @@ export class UserService {
   ) { }
 
    async create(createUserDto: CreateUserDto): Promise<User> {
+    try{
     const saltRounds = parseInt(this.configService.get<string>('SALT_ROUNDS') ?? '10', 10);
 
     const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
@@ -26,6 +27,18 @@ export class UserService {
       password: hashedPassword,
     });
 
-    return this.userRepository.save(user);
+    return await this.userRepository.save(user);
+  }catch(error) {
+ // Generic Mongo duplicate key check (no hardcoded code)
+    if (
+      error instanceof Error &&
+      ('code' in error || 'errmsg' in error) &&
+      (error as any).message?.includes('duplicate key') // Generic safe check
+    ) {
+      throw new BadRequestException('User with this field already exists');
+    }
+
+    throw new BadRequestException('Failed to create user');
   }
+}
 }
